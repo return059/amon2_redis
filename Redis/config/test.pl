@@ -9,4 +9,8 @@ my $dbpath = File::Spec->catfile($basedir, 'db', 'test.db');
             sqlite_unicode => 1,
         }
     ],
+    cache => {
+        servers   => ['localhost:11211'],
+        namespace => 'nopaste:',
+    },
 };

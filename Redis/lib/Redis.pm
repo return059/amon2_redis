@@ -30,6 +30,17 @@ sub db {
     $c->{db};
 }
 
+use Redis::Cache;
+
+sub cache {
+    my $c = shift;
+    return $c->{cache} //= do {
+        my $conf = $c->config->{cache}
+            or die "Missing configuration about cache";
+        NoPaste::Cache->new($conf->{servers} => $conf->{namespace});
+    };
+}
+
 1;
 __END__
 
